@@ -28,7 +28,7 @@ have liked to have a more elegant test with more time.
 5. The tests checking if the input-output pair is correct only checks this by the number of lines. This could easily have been done on the actual values.
 6. I had to write 2 instances of the mock service used in the tests. Namely, `MockInputService` and `MockInputServiceRecovers`. 
 This is a bit hard to read and a bit unintuitive.
-
+7. The project is called `untitled`.
 
 
 
