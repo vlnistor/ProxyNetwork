@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory
 
 
 const val MAX_CONCURRENT_REQUESTS = 30
-
+const val RETRY_INTERVAL = 50L
 
 class AsyncRunner(
     private val proxies: List<InputService>,
@@ -31,7 +31,7 @@ class AsyncRunner(
 
     private suspend fun waitUntil(f : () -> Boolean){
         while(!f()){
-            delay(100)
+            delay(RETRY_INTERVAL)
         }
     }
 
@@ -42,13 +42,13 @@ class AsyncRunner(
             waitUntil{ procs.get() < MAX_CONCURRENT_REQUESTS }
             procs.incrementAndGet()
             launch {
-                doWork(proxy, code)
+                callAndProcess(proxy, code)
                 procs.decrementAndGet()
             }
         }
     }
 
-    private suspend fun doWork(proxy: InputService, code : String) {
+    private suspend fun callAndProcess(proxy: InputService, code : String) {
         val response = proxy.call(code)
         when(response.code()){
             200 -> {

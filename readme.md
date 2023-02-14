@@ -1,10 +1,6 @@
 # How to run
-Assumption
-1. The proxies are available
 
-Instructions
- 1. chmod +x gradlew
- 2. gradlew build
- 3. tar xvf build/distributions/untitled-1.0-SNAPSHOT.tar
- 4. cd untitled-1.0-SNAPSHOT/bin
- 5. ./untitled input1 input2 input3
+ 1. `chmod +x build.sh`
+ 2. `./build.sh`
+ 3. `cd untitled-1.0-SNAPSHOT/bin`
+ 4. `./untitled input1 input2 input3`
