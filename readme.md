@@ -1,3 +1,21 @@
+# Task
+
+
+The task is to maximize throughput over a proxy network. I am given 3 command line arguments pointing to 3 unique files.
+1. **Proxy file path** - This file contains a proxy url on every line. I can issue up to 30 concurrent requests to each of these proxies.
+2. **Code file path** - There is a code on every line. To _solve_ a code I must send a request to any of the proxies with the code.
+3. **Solution file path** - This file should contain a code-solution pair on every line. (The order need not be the same as the code file path.
+
+**Considerations**
+1. Proxies will respond to the solution of a code with a status code of 200 and a body containing the solution.
+2. Issuing any more than 30 concurent requests to a given proxy runs the risk of being blocked. Being blocked is equivalent to the proxy only responding with status code 503.
+3. Even without being blocked, a proxy may sometimes fail to respond correctly. The status code will be 503.
+4. If any of the proxies responds with anything but a 503 (fail) or a 200 (success) the whole application must be shut down immediately.
+5. The code should be written as to minimize data loss.
+
+
+**Below is an implementation of the above constraints.**
+
 # How to run
 
  1. `chmod +x build.sh`
